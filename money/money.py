@@ -4,3 +4,6 @@ class Dollar:
 
     def times(self, multiplier: int) -> 'Dollar':
         return Dollar(self.amount * multiplier)
+
+    def __eq__(self, dollar: 'Dollar') -> bool:
+        return self.amount == dollar.amount
