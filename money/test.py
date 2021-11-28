@@ -1,4 +1,4 @@
-from .money import Bank, Expression, Money
+from .money import Bank, Expression, Money, Sum
 
 
 class TestMoney:
@@ -18,7 +18,21 @@ class TestMoney:
         assert Money.franc(1).currency == 'CHF'
 
     def test_simple_addition(self) -> None:
-        sum_: Expression = Money.dollar(5).plus(Money.dollar(5))
+        five = Money.dollar(5)
+        sum_: Expression = five.plus(five)
         reduced = Bank().reduce(sum_, 'USD')
 
         assert reduced == Money.dollar(10)
+
+    def test_plus_returns_sum(self) -> None:
+        five = Money.dollar(5)
+        result: Sum = five.plus(five)
+        
+        assert result.augend == five
+        assert result.addend == five
+
+    def test_reduce_sum(self) -> None:
+        sum_: Expression = Sum(Money.dollar(3), Money.dollar(4))
+        result: Money = Bank().reduce(sum_, 'USD')
+        
+        assert result == Money.dollar(7)
