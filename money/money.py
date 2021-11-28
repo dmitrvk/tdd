@@ -6,16 +6,10 @@ class Money(abc.ABC):
         self._amount: int = amount
         self._currency = currency
 
-    def __eq__(self, money: 'Money') -> bool:
-        return (
-            self._amount == money._amount
-            and self.__class__ == money.__class__
-        )
-
-    @abc.abstractmethod
     def times(self, multiplier: int) -> 'Money':
-        ...
+        return Money(self._amount * multiplier, self._currency)
 
+    @property
     def currency(self) -> str:
         return self._currency
 
@@ -27,12 +21,19 @@ class Money(abc.ABC):
     def franc(amount: int) -> 'Money':
         return Franc(amount, 'CHF')
 
+    def __eq__(self, money: 'Money') -> bool:
+        return (
+            self._amount == money._amount
+            and self.currency == money.currency
+        )
+
+    def __repr__(self) -> str:
+        return f'<Money({self._amount}, {self._currency})>'
+
 
 class Dollar(Money):
-    def times(self, multiplier: int) -> 'Money':
-        return Money.dollar(self._amount * multiplier)
+    ...
 
 
 class Franc(Money):
-    def times(self, multiplier: int) -> 'Money':
-        return Money.franc(self._amount * multiplier)
+    ...

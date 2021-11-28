@@ -1,4 +1,4 @@
-from .money import Money
+from .money import Franc, Money
 
 
 class TestMoney:
@@ -22,5 +22,8 @@ class TestMoney:
         assert five.times(3) == Money.franc(15)
 
     def test_currency(self) -> None:
-        assert Money.dollar(1).currency() == 'USD'
-        assert Money.franc(1).currency() == 'CHF'
+        assert Money.dollar(1).currency == 'USD'
+        assert Money.franc(1).currency == 'CHF'
+
+    def test_different_class_euquailty(self) -> None:
+        assert Money(10, 'CHF') == Franc(10, 'CHF')
