@@ -3,7 +3,10 @@ class Money:
         self._amount: int = amount
 
     def __eq__(self, money: 'Money') -> bool:
-        return self._amount == money._amount
+        return (
+            self._amount == money._amount
+            and self.__class__ == money.__class__
+        )
 
 
 class Dollar(Money):
