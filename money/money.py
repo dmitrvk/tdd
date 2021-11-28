@@ -15,11 +15,11 @@ class Money(abc.ABC):
 
     @staticmethod
     def dollar(amount: int) -> 'Money':
-        return Dollar(amount, 'USD')
+        return Money(amount, 'USD')
 
     @staticmethod
     def franc(amount: int) -> 'Money':
-        return Franc(amount, 'CHF')
+        return Money(amount, 'CHF')
 
     def __eq__(self, money: 'Money') -> bool:
         return (
@@ -29,11 +29,3 @@ class Money(abc.ABC):
 
     def __repr__(self) -> str:
         return f'<Money({self._amount}, {self._currency})>'
-
-
-class Dollar(Money):
-    ...
-
-
-class Franc(Money):
-    ...
