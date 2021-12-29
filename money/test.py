@@ -27,12 +27,22 @@ class TestMoney:
     def test_plus_returns_sum(self) -> None:
         five = Money.dollar(5)
         result: Sum = five.plus(five)
-        
+
         assert result.augend == five
         assert result.addend == five
 
     def test_reduce_sum(self) -> None:
         sum_: Expression = Sum(Money.dollar(3), Money.dollar(4))
         result: Money = Bank().reduce(sum_, 'USD')
-        
+
         assert result == Money.dollar(7)
+
+    def test_reduce_money_different_currency(self) -> None:
+        bank = Bank()
+        bank.add_rate('CHF', 'USD', 2)
+        result = bank.reduce(Money.franc(2), 'USD')
+
+        assert result == Money.dollar(1)
+
+    def test_identity_rate(self) -> None:
+        assert Bank().rate('USD', 'USD') == 1

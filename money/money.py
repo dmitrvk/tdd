@@ -34,8 +34,10 @@ class Money(Expression):
     def plus(self, addend: 'Money') -> Expression:
         return Sum(self, addend)
 
-    def reduce(self, to: str) -> 'Money':
-        return self
+    def reduce(self, bank: 'Bank', to: str) -> 'Money':
+        rate: int = bank.rate(self.currency, to)
+
+        return Money(self.amount // rate, to)
 
     def __eq__(self, money: 'Money') -> bool:
         return (
@@ -52,7 +54,7 @@ class Sum(Expression):
         self._augend: Money = augend
         self._addend: Money = addend
 
-    def reduce(self, to: str) -> Money:
+    def reduce(self, bank: 'Bank', to: str) -> Money:
         amount: int = self.augend.amount + self.addend.amount
 
         return Money(amount, to)
@@ -67,5 +69,17 @@ class Sum(Expression):
 
 
 class Bank:
+    def __init__(self) -> None:
+        self._rates: dict[tuple[str, str], int] = {}
+
     def reduce(self, source: Expression, to: str) -> Money:
-        return source.reduce(to)
+        return source.reduce(self, to)
+
+    def add_rate(self, from_: str, to: str, rate: int) -> None:
+        self._rates[(from_, to)] = rate
+
+    def rate(self, from_: str, to: str) -> int:
+        if from_ == to:
+            return 1
+
+        return self._rates[(from_, to)]
