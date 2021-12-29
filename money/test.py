@@ -57,3 +57,29 @@ class TestMoney:
         result = bank.reduce(five_dollars.plus(ten_francs), 'USD')
 
         assert result == Money.dollar(10)
+
+    def test_sum_plus_money(self) -> None:
+        five_dollars = Money.dollar(5)
+        ten_francs = Money.franc(10)
+
+        bank = Bank()
+        bank.add_rate('CHF', 'USD', 2)
+
+        sum_ = Sum(five_dollars, ten_francs).plus(five_dollars)
+
+        result = bank.reduce(sum_, 'USD')
+
+        assert result == Money.dollar(15)
+
+    def test_sum_times(self) -> None:
+        five_dollars = Money.dollar(5)
+        ten_francs = Money.franc(10)
+
+        bank = Bank()
+        bank.add_rate('CHF', 'USD', 2)
+
+        sum_ = Sum(five_dollars, ten_francs).times(2)
+
+        result = bank.reduce(sum_, 'USD')
+
+        assert result == Money.dollar(20)
