@@ -6,6 +6,10 @@ class Expression(abc.ABC):
     def reduce(self, to: str) -> 'Money':
         ...
 
+    @abc.abstractmethod
+    def plus(self, addend: 'Expression') -> 'Expression':
+        ...
+
 
 class Money(Expression):
     def __init__(self, amount: int, currency: str) -> None:
@@ -28,10 +32,10 @@ class Money(Expression):
     def currency(self) -> str:
         return self._currency
 
-    def times(self, multiplier: int) -> 'Money':
+    def times(self, multiplier: int) -> Expression:
         return Money(self._amount * multiplier, self._currency)
 
-    def plus(self, addend: 'Money') -> Expression:
+    def plus(self, addend: Expression) -> Expression:
         return Sum(self, addend)
 
     def reduce(self, bank: 'Bank', to: str) -> 'Money':
@@ -50,14 +54,20 @@ class Money(Expression):
 
 
 class Sum(Expression):
-    def __init__(self, augend: Money, addend: Money) -> None:
-        self._augend: Money = augend
-        self._addend: Money = addend
+    def __init__(self, augend: Expression, addend: Expression) -> None:
+        self._augend: Expression = augend
+        self._addend: Expression = addend
 
     def reduce(self, bank: 'Bank', to: str) -> Money:
-        amount: int = self.augend.amount + self.addend.amount
+        amount: int = (
+            self.augend.reduce(bank, to).amount
+            + self.addend.reduce(bank, to).amount
+        )
 
         return Money(amount, to)
+
+    def plus(self, addend: Expression) -> Expression:
+        ...
 
     @property
     def augend(self) -> Money:
