@@ -1,18 +1,9 @@
-import abc
+from typing import TYPE_CHECKING
 
+from .expression import Expression
 
-class Expression(abc.ABC):
-    @abc.abstractmethod
-    def reduce(self, to: str) -> 'Money':
-        ...
-
-    @abc.abstractmethod
-    def plus(self, addend: 'Expression') -> 'Expression':
-        ...
-
-    @abc.abstractmethod
-    def times(self, multiplier: int) -> 'Expression':
-        ...
+if TYPE_CHECKING:
+    from .bank import Bank
 
 
 class Money(Expression):
@@ -40,6 +31,8 @@ class Money(Expression):
         return Money(self._amount * multiplier, self._currency)
 
     def plus(self, addend: Expression) -> Expression:
+        from .sum import Sum
+
         return Sum(self, addend)
 
     def reduce(self, bank: 'Bank', to: str) -> 'Money':
@@ -55,51 +48,3 @@ class Money(Expression):
 
     def __repr__(self) -> str:
         return f'<Money({self._amount}, {self._currency})>'
-
-
-class Sum(Expression):
-    def __init__(self, augend: Expression, addend: Expression) -> None:
-        self._augend: Expression = augend
-        self._addend: Expression = addend
-
-    def reduce(self, bank: 'Bank', to: str) -> Money:
-        amount: int = (
-            self.augend.reduce(bank, to).amount
-            + self.addend.reduce(bank, to).amount
-        )
-
-        return Money(amount, to)
-
-    def plus(self, addend: Expression) -> Expression:
-        return Sum(self, addend)
-
-    def times(self, multiplier: int) -> Expression:
-        return Sum(
-            self.augend.times(multiplier),
-            self.addend.times(multiplier),
-        )
-
-    @property
-    def augend(self) -> Money:
-        return self._augend
-
-    @property
-    def addend(self) -> Money:
-        return self._addend
-
-
-class Bank:
-    def __init__(self) -> None:
-        self._rates: dict[tuple[str, str], int] = {}
-
-    def reduce(self, source: Expression, to: str) -> Money:
-        return source.reduce(self, to)
-
-    def add_rate(self, from_: str, to: str, rate: int) -> None:
-        self._rates[(from_, to)] = rate
-
-    def rate(self, from_: str, to: str) -> int:
-        if from_ == to:
-            return 1
-
-        return self._rates[(from_, to)]
