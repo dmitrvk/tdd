@@ -1,4 +1,4 @@
-from .money import Bank, Expression, Money, Sum
+from money.money import Bank, Expression, Money, Sum
 
 
 class TestMoney:
