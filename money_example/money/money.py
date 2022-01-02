@@ -16,8 +16,8 @@ class Money(Expression):
         return Money(amount, 'USD')
 
     @staticmethod
-    def franc(amount: int) -> 'Money':
-        return Money(amount, 'CHF')
+    def ruble(amount: int) -> 'Money':
+        return Money(amount, 'RUB')
 
     @property
     def amount(self) -> int:

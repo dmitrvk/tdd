@@ -11,11 +11,11 @@ class TestMoney:
     def test_equality(self) -> None:
         assert Money.dollar(5) == Money.dollar(5)
         assert Money.dollar(5) != Money.dollar(6)
-        assert Money.dollar(5) != Money.franc(5)
+        assert Money.dollar(5) != Money.ruble(5)
 
     def test_currency(self) -> None:
         assert Money.dollar(1).currency == 'USD'
-        assert Money.franc(1).currency == 'CHF'
+        assert Money.ruble(1).currency == 'RUB'
 
     def test_simple_addition(self) -> None:
         five = Money.dollar(5)
@@ -39,8 +39,8 @@ class TestMoney:
 
     def test_reduce_money_different_currency(self) -> None:
         bank = Bank()
-        bank.add_rate('CHF', 'USD', 2)
-        result = bank.reduce(Money.franc(2), 'USD')
+        bank.add_rate('RUB', 'USD', 2)
+        result = bank.reduce(Money.ruble(2), 'USD')
 
         assert result == Money.dollar(1)
 
@@ -49,23 +49,23 @@ class TestMoney:
 
     def test_mixed_addition(self) -> None:
         five_dollars = Money.dollar(5)
-        ten_francs = Money.franc(10)
+        ten_rubles = Money.ruble(10)
 
         bank = Bank()
-        bank.add_rate('CHF', 'USD', 2)
+        bank.add_rate('RUB', 'USD', 2)
 
-        result = bank.reduce(five_dollars.plus(ten_francs), 'USD')
+        result = bank.reduce(five_dollars.plus(ten_rubles), 'USD')
 
         assert result == Money.dollar(10)
 
     def test_sum_plus_money(self) -> None:
         five_dollars = Money.dollar(5)
-        ten_francs = Money.franc(10)
+        ten_rubles = Money.ruble(10)
 
         bank = Bank()
-        bank.add_rate('CHF', 'USD', 2)
+        bank.add_rate('RUB', 'USD', 2)
 
-        sum_ = Sum(five_dollars, ten_francs).plus(five_dollars)
+        sum_ = Sum(five_dollars, ten_rubles).plus(five_dollars)
 
         result = bank.reduce(sum_, 'USD')
 
@@ -73,12 +73,12 @@ class TestMoney:
 
     def test_sum_times(self) -> None:
         five_dollars = Money.dollar(5)
-        ten_francs = Money.franc(10)
+        ten_rubles = Money.ruble(10)
 
         bank = Bank()
-        bank.add_rate('CHF', 'USD', 2)
+        bank.add_rate('RUB', 'USD', 2)
 
-        sum_ = Sum(five_dollars, ten_francs).times(2)
+        sum_ = Sum(five_dollars, ten_rubles).times(2)
 
         result = bank.reduce(sum_, 'USD')
 
