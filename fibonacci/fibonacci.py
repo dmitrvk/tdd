@@ -2,4 +2,7 @@ def fibonacci(number: int) -> int:
     if number == 0:
         return 0
 
-    return 1
+    if number <= 2:
+        return 1
+
+    return 2
