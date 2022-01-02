@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING
 
+from .currency import Currency
 from .expression import Expression
 
 if TYPE_CHECKING:
@@ -13,11 +14,11 @@ class Money(Expression):
 
     @staticmethod
     def dollar(amount: int) -> 'Money':
-        return Money(amount, 'USD')
+        return Money(amount, Currency.USD)
 
     @staticmethod
     def ruble(amount: int) -> 'Money':
-        return Money(amount, 'RUB')
+        return Money(amount, Currency.RUB)
 
     @property
     def amount(self) -> int:

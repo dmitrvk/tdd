@@ -1,4 +1,4 @@
-from money import Bank, Expression, Money, Sum
+from money import Bank, Currency, Expression, Money, Sum
 
 
 class TestMoney:
@@ -14,13 +14,13 @@ class TestMoney:
         assert Money.dollar(5) != Money.ruble(5)
 
     def test_currency(self) -> None:
-        assert Money.dollar(1).currency == 'USD'
-        assert Money.ruble(1).currency == 'RUB'
+        assert Money.dollar(1).currency == Currency.USD
+        assert Money.ruble(1).currency == Currency.RUB
 
     def test_simple_addition(self) -> None:
         five = Money.dollar(5)
         sum_: Expression = five.plus(five)
-        reduced = Bank().reduce(sum_, 'USD')
+        reduced = Bank().reduce(sum_, Currency.USD)
 
         assert reduced == Money.dollar(10)
 
@@ -33,28 +33,28 @@ class TestMoney:
 
     def test_reduce_sum(self) -> None:
         sum_: Expression = Sum(Money.dollar(3), Money.dollar(4))
-        result: Money = Bank().reduce(sum_, 'USD')
+        result: Money = Bank().reduce(sum_, Currency.USD)
 
         assert result == Money.dollar(7)
 
     def test_reduce_money_different_currency(self) -> None:
         bank = Bank()
-        bank.add_rate('RUB', 'USD', 2)
-        result = bank.reduce(Money.ruble(2), 'USD')
+        bank.add_rate(Currency.RUB, Currency.USD, 2)
+        result = bank.reduce(Money.ruble(2), Currency.USD)
 
         assert result == Money.dollar(1)
 
     def test_identity_rate(self) -> None:
-        assert Bank().rate('USD', 'USD') == 1
+        assert Bank().rate(Currency.USD, Currency.USD) == 1
 
     def test_mixed_addition(self) -> None:
         five_dollars = Money.dollar(5)
         ten_rubles = Money.ruble(10)
 
         bank = Bank()
-        bank.add_rate('RUB', 'USD', 2)
+        bank.add_rate(Currency.RUB, Currency.USD, 2)
 
-        result = bank.reduce(five_dollars.plus(ten_rubles), 'USD')
+        result = bank.reduce(five_dollars.plus(ten_rubles), Currency.USD)
 
         assert result == Money.dollar(10)
 
@@ -63,11 +63,11 @@ class TestMoney:
         ten_rubles = Money.ruble(10)
 
         bank = Bank()
-        bank.add_rate('RUB', 'USD', 2)
+        bank.add_rate(Currency.RUB, Currency.USD, 2)
 
         sum_ = Sum(five_dollars, ten_rubles).plus(five_dollars)
 
-        result = bank.reduce(sum_, 'USD')
+        result = bank.reduce(sum_, Currency.USD)
 
         assert result == Money.dollar(15)
 
@@ -76,10 +76,10 @@ class TestMoney:
         ten_rubles = Money.ruble(10)
 
         bank = Bank()
-        bank.add_rate('RUB', 'USD', 2)
+        bank.add_rate(Currency.RUB, Currency.USD, 2)
 
         sum_ = Sum(five_dollars, ten_rubles).times(2)
 
-        result = bank.reduce(sum_, 'USD')
+        result = bank.reduce(sum_, Currency.USD)
 
         assert result == Money.dollar(20)
