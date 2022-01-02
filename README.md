@@ -1,5 +1,7 @@
 # Test-driven development examples
 
+![Build Status](https://img.shields.io/github/workflow/status/dmitrvk/tdd/ci?color=50c878&style=flat-square)
+
 Following the book by Kent Beck
 
 ## Money
