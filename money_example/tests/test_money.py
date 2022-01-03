@@ -19,14 +19,14 @@ class TestMoney:
 
     def test_simple_addition(self) -> None:
         five = Money.dollar(5)
-        sum_: Expression = five.plus(five)
+        sum_: Expression = five + five
         reduced = Bank().reduce(sum_, Currency.USD)
 
         assert reduced == Money.dollar(10)
 
     def test_plus_returns_sum(self) -> None:
         five = Money.dollar(5)
-        result: Sum = five.plus(five)
+        result: Sum = five + five
 
         assert result.augend == five
         assert result.addend == five
@@ -54,7 +54,7 @@ class TestMoney:
         bank = Bank()
         bank.add_rate(Currency.RUB, Currency.USD, 2)
 
-        result = bank.reduce(five_dollars.plus(ten_rubles), Currency.USD)
+        result = bank.reduce(five_dollars + ten_rubles, Currency.USD)
 
         assert result == Money.dollar(10)
 
@@ -65,7 +65,7 @@ class TestMoney:
         bank = Bank()
         bank.add_rate(Currency.RUB, Currency.USD, 2)
 
-        sum_ = Sum(five_dollars, ten_rubles).plus(five_dollars)
+        sum_ = Sum(five_dollars, ten_rubles) + five_dollars
 
         result = bank.reduce(sum_, Currency.USD)
 

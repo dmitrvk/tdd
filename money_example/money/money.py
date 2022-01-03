@@ -31,15 +31,15 @@ class Money(Expression):
     def times(self, multiplier: int) -> Expression:
         return Money(self._amount * multiplier, self._currency)
 
-    def plus(self, addend: Expression) -> Expression:
-        from .sum import Sum
-
-        return Sum(self, addend)
-
     def reduce(self, bank: 'Bank', to: str) -> 'Money':
         rate: int = bank.rate(self.currency, to)
 
         return Money(self.amount // rate, to)
+
+    def __add__(self, addend: Expression) -> Expression:
+        from .sum import Sum
+
+        return Sum(self, addend)
 
     def __eq__(self, money: 'Money') -> bool:
         return (

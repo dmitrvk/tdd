@@ -20,9 +20,6 @@ class Sum(Expression):
 
         return Money(amount, to)
 
-    def plus(self, addend: Expression) -> Expression:
-        return Sum(self, addend)
-
     def times(self, multiplier: int) -> Expression:
         return Sum(
             self.augend.times(multiplier),
@@ -36,3 +33,6 @@ class Sum(Expression):
     @property
     def addend(self) -> Money:
         return self._addend
+
+    def __add__(self, addend: Expression) -> Expression:
+        return Sum(self, addend)
