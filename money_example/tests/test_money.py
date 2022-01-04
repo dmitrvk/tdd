@@ -5,8 +5,8 @@ class TestMoney:
     def test_multiplication(self) -> None:
         five = Money.dollar(5)
 
-        assert five.times(2) == Money.dollar(10)
-        assert five.times(3) == Money.dollar(15)
+        assert five * 2 == Money.dollar(10)
+        assert five * 3 == Money.dollar(15)
 
     def test_equality(self) -> None:
         assert Money.dollar(5) == Money.dollar(5)
@@ -78,7 +78,7 @@ class TestMoney:
         bank = Bank()
         bank.add_rate(Currency.RUB, Currency.USD, 2)
 
-        sum_ = Sum(five_dollars, ten_rubles).times(2)
+        sum_ = Sum(five_dollars, ten_rubles) * 2
 
         result = bank.reduce(sum_, Currency.USD)
 

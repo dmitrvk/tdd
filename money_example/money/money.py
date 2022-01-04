@@ -28,9 +28,6 @@ class Money(Expression):
     def currency(self) -> str:
         return self._currency
 
-    def times(self, multiplier: int) -> Expression:
-        return Money(self._amount * multiplier, self._currency)
-
     def reduce(self, bank: 'Bank', to: str) -> 'Money':
         rate: int = bank.rate(self.currency, to)
 
@@ -40,6 +37,9 @@ class Money(Expression):
         from .sum import Sum
 
         return Sum(self, addend)
+
+    def __mul__(self, multiplier: int) -> Expression:
+        return Money(self._amount * multiplier, self._currency)
 
     def __eq__(self, money: 'Money') -> bool:
         return (

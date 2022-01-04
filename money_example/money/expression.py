@@ -11,9 +11,9 @@ class Expression(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def times(self, multiplier: int) -> 'Expression':
+    def __add__(self, addend: 'Expression') -> 'Expression':
         ...
 
     @abc.abstractmethod
-    def __add__(self, addend: 'Expression') -> 'Expression':
+    def __mul__(self, multiplier: int) -> 'Expression':
         ...
