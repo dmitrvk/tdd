@@ -8,12 +8,18 @@ class TestCase:
     def run(self) -> None:
         self.set_up()
         getattr(self, self.name)()
+        self.tear_down()
+
+    def tear_down(self) -> None:
+        ...
 
 
 class WasRun(TestCase):
     def set_up(self) -> None:
-        self.was_run: bool = False
-        self.was_set_up: bool = True
+        self.log = 'set_up'
 
     def test_method(self) -> None:
-        self.was_run: bool = True
+        self.log += ' test_method'
+
+    def tear_down(self) -> None:
+        self.log += ' tear_down'
