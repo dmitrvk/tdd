@@ -34,11 +34,11 @@ Following the book by Kent Beck
 
 ## Fibonacci
 
-1. [Return a constant](https://github.com/dmitrvk/tdd/commit/fd0082ba91200e751a2b38a9c0b81f376b1d528c)
-1. [Treat zero as a special case](https://github.com/dmitrvk/tdd/commit/060a0289b9056c79a3711f11194082b9b616c386)
-1. [Reduce duplication in tests](https://github.com/dmitrvk/tdd/commit/1b710d407a77e0009bda2e6d561a7ab938eae429)
-1. [Treat smaller inputs as special cases](https://github.com/dmitrvk/tdd/commit/f68d46d4c5b94ef68e8f50b25b29417626252e92)
-1. [Generalize](https://github.com/dmitrvk/tdd/commit/b6392242bbddabe0680b124cd711a065aa335ddc)
+1. [Return a constant](https://github.com/dmitrvk/tdd/commit/1739ec7954637722a31364f35a78032beedce2a5)
+1. [Treat zero as a special case](https://github.com/dmitrvk/tdd/commit/84f1483a522f8cea82c33b500559b5360d71aba0)
+1. [Reduce duplication in tests](https://github.com/dmitrvk/tdd/commit/78d20b9d771d4875070981feb6fc2c1a0bb3224a)
+1. [Treat smaller inputs as special cases](https://github.com/dmitrvk/tdd/commit/d58160ae25030d0b318daeb20a061aa03382a984)
+1. [Generalize](https://github.com/dmitrvk/tdd/commit/64a3c21bccc138fffd11214fa6f5df57a92cc78a)
 
 ## License
 
