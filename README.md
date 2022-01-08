@@ -6,27 +6,31 @@ Following the book by Kent Beck
 
 ## Money
 
-* [Chapter 3](https://github.com/dmitrvk/tdd/commit/58e368758efd3772040410fcd814de81063e9a0f)
-* [Chapter 4](https://github.com/dmitrvk/tdd/commit/dba46704ccaa7f0426874ee4344f13fd16b7eaa0)
-* [Chapter 5](https://github.com/dmitrvk/tdd/commit/644fd245c962613b7c7f1c546696ef5466594077)
-* [Chapter 6](https://github.com/dmitrvk/tdd/commit/569efb803af9ad8944a9301c89d0b7f961a50c10)
-* [Chapter 7](https://github.com/dmitrvk/tdd/commit/2ea262e7418cb725256f267779e05d3caeff5df3)
-* [Chapter 8](https://github.com/dmitrvk/tdd/commit/2c249214c66b55801b7001fc22bce4a174085261)
-* [Chapter 9](https://github.com/dmitrvk/tdd/commit/fd1aaea28b01e98f224007fd0c6c05c49216602f)
-* [Chapter 10](https://github.com/dmitrvk/tdd/commit/ff96d7a347501d60b9a9f75c4261781bc05e1cc3)
-* [Chapter 11](https://github.com/dmitrvk/tdd/commit/6c2cc1085877103c76214514da15271591ecaa91)
-* [Chapter 12](https://github.com/dmitrvk/tdd/commit/30ef7f6b564b62520901827ce57c629dea5c987a)
-* [Chapter 13](https://github.com/dmitrvk/tdd/commit/b775233ce711f5c32bb2d3fd0744ee4c751ad6a0)
-* [Chapter 14](https://github.com/dmitrvk/tdd/commit/a83ba4ede2f58136ce51e0411bc38b588918329a)
-* [Chapter 15](https://github.com/dmitrvk/tdd/commit/c70542ba1c488a4aa3ad47c5e3dba3bce44b49c3)
-* [Chapter 16](https://github.com/dmitrvk/tdd/commit/a3015756a345c7f4309bad24c1fb0142606e73fd)
-* [Chapter 17](https://github.com/dmitrvk/tdd/commit/9dee03c3710a6fc3ee6ee9cf4e068a3d0cbab2c4)
-* [Chapter 18](https://github.com/dmitrvk/tdd/commit/92aa36b841a2b67f5292d74498bd0947cd012b54)
+* [Chapter 1](https://github.com/dmitrvk/tdd/commit/a01702ff5ce08d128997e9fd2272fc7e80784075)
+* [Chapter 2](https://github.com/dmitrvk/tdd/commit/8dac45e07ddb3d35299a6df43e07de369cca1be6)
+* [Chapter 3](https://github.com/dmitrvk/tdd/commit/2dac0efee1f44ae9d30f215f1403b2e44aafb5f7)
+* [Chapter 4](https://github.com/dmitrvk/tdd/commit/2a67c07f64af4cbb04d3e87fcdd55f55b78bf608)
+* [Chapter 5](https://github.com/dmitrvk/tdd/commit/01bcfc9451e6b6090dc3bf03e1e1491c22fe89a6)
+* [Chapter 6](https://github.com/dmitrvk/tdd/commit/13dd57cf3fec0d8f9301ec57e7b8ac26c2941d53)
+* [Chapter 7](https://github.com/dmitrvk/tdd/commit/f9375bcc1a9604af17af1ba48429347a070d7db7)
+* [Chapter 8](https://github.com/dmitrvk/tdd/commit/1134588962db0944b4ff6815349a919c3daf8210)
+* [Chapter 9](https://github.com/dmitrvk/tdd/commit/0dd635b2644c91a32e8a382bb91badc23998941b)
+* [Chapter 10](https://github.com/dmitrvk/tdd/commit/46a09f37ae78680f7ca78634a03a2d2e66fafc80)
+* [Chapter 11](https://github.com/dmitrvk/tdd/commit/783fc9bfaaeb0d12d91cdc9ac3da25abd1c720e6)
+* [Chapter 12](https://github.com/dmitrvk/tdd/commit/745fa9100cc9acdfae8e1c2d1c231fee4b0a4f16)
+* [Chapter 13](https://github.com/dmitrvk/tdd/commit/414ad7a43b7c9d0559de48db878c47bad5a139cb)
+* [Chapter 14](https://github.com/dmitrvk/tdd/commit/7b3f493efd450d0636302a9efbb73a759e3f1976)
+* [Chapter 15](https://github.com/dmitrvk/tdd/commit/fe64f2b69a3f9275de6e82e3ffa42278b89df5a8)
+* [Chapter 16](https://github.com/dmitrvk/tdd/commit/61c348d3430fda84c10e1fc188b9287963a542aa)
 
 ## Testing Framework
 
-* [Chapter 20](https://github.com/dmitrvk/tdd/commit/b8fd70661acf73ebc6d3d85d8e09f8c72b326cbd)
-* ...
+* [Chapter 18](https://github.com/dmitrvk/tdd/commit/c0123ae393f4330f652820599620f1e8f4a79de4)
+* [Chapter 19](https://github.com/dmitrvk/tdd/commit/7de8ce80d76ac51e2bd7e7d62642931edfd7fc98)
+* [Chapter 20](https://github.com/dmitrvk/tdd/commit/ddaffeb5eca62551869a75a98081d6596abe398e)
+* [Chapter 21](https://github.com/dmitrvk/tdd/commit/8be0a92e0686a7cc85a908dd2dc31b91d011360f)
+* [Chapter 22](https://github.com/dmitrvk/tdd/commit/13fe4428d8a3650ed48cd79936cc17da51d8d61a)
+* [Chapter 23](https://github.com/dmitrvk/tdd/commit/bfd0fb27af3584a6669abe073c679e9ad4c15fd7)
 
 ## Fibonacci
 
