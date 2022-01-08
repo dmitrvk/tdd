@@ -1,34 +1,52 @@
-from main import TestCase, TestResult, WasRun
+from main import TestCase, TestResult, TestSuite, WasRun
 
 
 class TestCaseTest(TestCase):
+    def set_up(self) -> None:
+        self.result = TestResult()
+
     def test_template_method(self) -> None:
         test = WasRun('test_method')
-        test.run()
+        test.run(self.result)
 
         assert test.log == 'set_up test_method tear_down'
 
     def test_result(self) -> None:
         test = WasRun('test_method')
-        result = test.run()
+        test.run(self.result)
 
-        assert result.summary() == '1 run, 0 failed'
+        assert self.result.summary() == '1 run, 0 failed'
 
     def test_failed_result(self) -> None:
         test = WasRun('test_broken_method')
-        result = test.run()
+        test.run(self.result)
 
-        assert result.summary() == '1 run, 1 failed'
+        assert self.result.summary() == '1 run, 1 failed'
 
     def test_failed_result_formatting(self) -> None:
-        result = TestResult()
-        result.test_started()
-        result.test_failed()
+        self.result.test_started()
+        self.result.test_failed()
 
-        assert result.summary() == '1 run, 1 failed'
+        assert self.result.summary() == '1 run, 1 failed'
+
+    def test_suite(self) -> None:
+        suite = TestSuite()
+        suite.add(WasRun('test_method'))
+        suite.add(WasRun('test_broken_method'))
+        suite.run(self.result)
+
+        assert self.result.summary() == '2 run, 1 failed'
 
 
-TestCaseTest('test_template_method').run()
-TestCaseTest('test_result').run()
-TestCaseTest('test_failed_result').run()
-TestCaseTest('test_failed_result_formatting').run()
+suite = TestSuite()
+suite.add(TestCaseTest('test_template_method'))
+suite.add(TestCaseTest('test_result'))
+suite.add(TestCaseTest('test_failed_result'))
+suite.add(TestCaseTest('test_failed_result_formatting'))
+suite.add(TestCaseTest('test_suite'))
+
+result = TestResult()
+
+suite.run(result)
+
+print(result.summary())

@@ -20,8 +20,7 @@ class TestCase:
     def set_up(self) -> None:
         ...
 
-    def run(self) -> TestResult:
-        result = TestResult()
+    def run(self, result: TestResult) -> TestResult:
         result.test_started()
 
         self.set_up()
@@ -32,8 +31,6 @@ class TestCase:
             result.test_failed()
 
         self.tear_down()
-
-        return result
 
     def tear_down(self) -> None:
         ...
@@ -51,3 +48,15 @@ class WasRun(TestCase):
 
     def tear_down(self) -> None:
         self.log += ' tear_down'
+
+
+class TestSuite:
+    def __init__(self) -> None:
+        self.tests: list[WasRun] = []
+
+    def add(self, test: WasRun) -> None:
+        self.tests.append(test)
+
+    def run(self, result: TestResult) -> None:
+        for test in self.tests:
+            test.run(result)
