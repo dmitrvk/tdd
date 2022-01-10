@@ -13,4 +13,4 @@ result = TestResult()
 
 suite.run(result)
 
-print(result.summary())
+print(result.summary)

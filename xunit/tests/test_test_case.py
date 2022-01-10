@@ -16,19 +16,19 @@ class TestCaseTest(TestCase):
         test = WasRun('test_method')
         test.run(self.result)
 
-        assert self.result.summary() == '1 run, 0 failed'
+        assert self.result.summary == '1 run, 0 failed'
 
     def test_failed_result(self) -> None:
         test = WasRun('test_broken_method')
         test.run(self.result)
 
-        assert self.result.summary() == '1 run, 1 failed'
+        assert self.result.summary == '1 run, 1 failed'
 
     def test_failed_result_formatting(self) -> None:
         self.result.test_started()
         self.result.test_failed()
 
-        assert self.result.summary() == '1 run, 1 failed'
+        assert self.result.summary == '1 run, 1 failed'
 
     def test_suite(self) -> None:
         suite = TestSuite()
@@ -36,4 +36,4 @@ class TestCaseTest(TestCase):
         suite.add(WasRun('test_broken_method'))
         suite.run(self.result)
 
-        assert self.result.summary() == '2 run, 1 failed'
+        assert self.result.summary == '2 run, 1 failed'

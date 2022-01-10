@@ -3,11 +3,12 @@ class TestResult:
         self.run_count: int = 0
         self.failure_count: int = 0
 
+    @property
+    def summary(self) -> str:
+        return f'{self.run_count} run, {self.failure_count} failed'
+
     def test_started(self) -> None:
         self.run_count += 1
 
     def test_failed(self) -> None:
         self.failure_count += 1
-
-    def summary(self) -> str:
-        return f'{self.run_count} run, {self.failure_count} failed'
