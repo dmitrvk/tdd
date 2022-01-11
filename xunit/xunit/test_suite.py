@@ -4,11 +4,11 @@ from .test_result import TestResult
 
 class TestSuite:
     def __init__(self) -> None:
-        self.tests: list[TestCase] = []
+        self._tests: list[TestCase] = []
 
     def add(self, test: TestCase) -> None:
-        self.tests.append(test)
+        self._tests.append(test)
 
     def run(self, result: TestResult) -> None:
-        for test in self.tests:
+        for test in self._tests:
             test.run(result)

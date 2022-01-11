@@ -3,7 +3,7 @@ from .test_result import TestResult
 
 class TestCase:
     def __init__(self, name: str) -> None:
-        self.name: str = name
+        self._name: str = name
 
     def set_up(self) -> None:
         ...
@@ -14,7 +14,7 @@ class TestCase:
         self.set_up()
 
         try:
-            getattr(self, self.name)()
+            getattr(self, self._name)()
         except Exception:
             result.test_failed()
 
