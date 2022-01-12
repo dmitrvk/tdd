@@ -38,6 +38,14 @@ class Money(Expression):
 
         return Sum(self, addend)
 
+    def __neg__(self) -> 'Money':
+        return Money(-self._amount, self.currency)
+
+    def __sub__(self, subtrahend: Expression) -> Expression:
+        from .sum import Sum
+
+        return Sum(self, -subtrahend)
+
     def __mul__(self, multiplier: int) -> Expression:
         return Money(self._amount * multiplier, self._currency)
 

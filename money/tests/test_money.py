@@ -83,3 +83,12 @@ class TestMoney:
         result = bank.reduce(sum_, Currency.USD)
 
         assert result == Money.dollar(20)
+
+    def test_money_negation(self) -> None:
+        assert (-Money.ruble(1)).amount == -1
+
+    def test_money_subtraction(self) -> None:
+        result = Money.ruble(3) - Money.ruble(2)
+        reduced = Bank().reduce(result, Currency.RUB)
+
+        assert reduced == Money.ruble(1)
