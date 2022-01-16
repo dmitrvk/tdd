@@ -40,6 +40,12 @@ Following the book by Kent Beck
 1. [Treat smaller inputs as special cases](https://github.com/dmitrvk/tdd/commit/d58160ae25030d0b318daeb20a061aa03382a984)
 1. [Generalize](https://github.com/dmitrvk/tdd/commit/64a3c21bccc138fffd11214fa6f5df57a92cc78a)
 
+## Run tests locally
+
+1. Clone the repository
+1. Create virtualenv, install dependencies
+1. Run `make test`
+
 ## License
 
 [MIT License](https://github.com/dmitrvk/tdd/blob/main/LICENSE)
