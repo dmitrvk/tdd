@@ -15,7 +15,7 @@ class Bank:
     def add_rate(self, from_: str, to: str, rate: int) -> None:
         self._rates[(from_, to)] = rate
 
-    def rate(self, from_: str, to: str) -> int:
+    def get_rate(self, from_: str, to: str) -> int:
         if from_ == to:
             return 1
 

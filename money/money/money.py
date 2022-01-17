@@ -29,7 +29,7 @@ class Money(Expression):
         return self._currency
 
     def reduce(self, bank: 'Bank', to: str) -> 'Money':
-        rate: int = bank.rate(self.currency, to)
+        rate: int = bank.get_rate(self.currency, to)
 
         return Money(self.amount // rate, to)
 
